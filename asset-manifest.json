@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/api_graph_challenge/static/css/main.ab7136cd.chunk.css",
+    "main.js": "/api_graph_challenge/static/js/main.2884245f.chunk.js",
+    "main.js.map": "/api_graph_challenge/static/js/main.2884245f.chunk.js.map",
+    "runtime-main.js": "/api_graph_challenge/static/js/runtime-main.10582573.js",
+    "runtime-main.js.map": "/api_graph_challenge/static/js/runtime-main.10582573.js.map",
+    "static/js/2.12d75ff5.chunk.js": "/api_graph_challenge/static/js/2.12d75ff5.chunk.js",
+    "static/js/2.12d75ff5.chunk.js.map": "/api_graph_challenge/static/js/2.12d75ff5.chunk.js.map",
+    "static/js/3.83c16741.chunk.js": "/api_graph_challenge/static/js/3.83c16741.chunk.js",
+    "static/js/3.83c16741.chunk.js.map": "/api_graph_challenge/static/js/3.83c16741.chunk.js.map",
+    "index.html": "/api_graph_challenge/index.html",
+    "static/css/main.ab7136cd.chunk.css.map": "/api_graph_challenge/static/css/main.ab7136cd.chunk.css.map",
+    "static/js/2.12d75ff5.chunk.js.LICENSE.txt": "/api_graph_challenge/static/js/2.12d75ff5.chunk.js.LICENSE.txt",
+    "static/media/logo.103b5fa1.svg": "/api_graph_challenge/static/media/logo.103b5fa1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.10582573.js",
+    "static/js/2.12d75ff5.chunk.js",
+    "static/css/main.ab7136cd.chunk.css",
+    "static/js/main.2884245f.chunk.js"
+  ]
+}
