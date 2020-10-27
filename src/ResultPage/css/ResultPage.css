@@ -1,0 +1,23 @@
+#ResultPageContent {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+#ResultPageTitle {
+    font-size: 1.6em;
+    color: var(--color1);
+    font-weight: bold;
+}
+
+#ResultPageSubTitle {
+    font-size: 1em;
+    color: var(--color1);
+}
+
+#ResultPageSectionTitle {
+    font-size: .9em;
+    color: var(--color1);
+    font-weight: bold;
+    margin-top: 20px;
+}
+
