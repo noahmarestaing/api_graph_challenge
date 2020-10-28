@@ -21,3 +21,17 @@
     margin-top: 20px;
 }
 
+#Text1 {
+    font-size: 1.9em;
+    color: var(--color1);
+    margin-top: 30px;
+}
+
+#Text2, #Text2Bold {
+    font-size: .8em;
+    color: var(--color1);
+}
+#Text2Bold {
+    font-weight: bold;
+}
+

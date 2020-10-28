@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useResultPageContext } from '../contexts/ResultPageContext'
 import './css/ResultPage.css'
 import './css/Variables.css'
+import GraphTable from './modules/GraphTable'
+import Summary from './modules/Summary'
 
 export default function ResultPage (props) {
 
@@ -20,6 +22,15 @@ export default function ResultPage (props) {
             </div>
 
             <div id="ResultPageSectionTitle">Occupation Summary for {resultPageContext.resultData.occupation.title}</div>
+            <Summary
+                summary={resultPageContext.resultData.summary}
+            />
+
+            <GraphTable
+                trendComparison={resultPageContext.resultData.trendComparison}
+
+
+            />
 
             <div id="ResultPageSectionTitle">Regional Trends</div>
 

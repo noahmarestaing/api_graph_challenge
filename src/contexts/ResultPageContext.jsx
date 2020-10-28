@@ -26,12 +26,12 @@ function ResultPageProvider(props) {
             jobs: {
                 year: 0,
                 regional: 0,
-                national_avg: 0
+                national_avg: 0,
             },
             jobs_growth: {
                 start_year: 0,
                 end_year: 0,
-                regional: 0
+                regional: 0,
             }
         },
         trend_comparison: {
@@ -44,7 +44,7 @@ function ResultPageProvider(props) {
         employing_industries: {
             industries: [],
             jobs: 0,
-            year: 0
+            year: 0,
         }  
     })
 
