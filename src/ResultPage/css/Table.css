@@ -1,0 +1,16 @@
+#Table {
+    margin-top: 40px;
+}
+#TableEntryLeft, #TableEntry {
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: right;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 15%;
+    border-bottom: 1px solid var(--color2);
+}
+#TableEntryLeft {
+    width: 53%;
+    text-align: left;
+}

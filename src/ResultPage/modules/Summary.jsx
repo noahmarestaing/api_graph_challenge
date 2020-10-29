@@ -3,10 +3,10 @@ import '../css/Summary.css'
 
 export default function Summary (props) {
     let jobsComparisonPercent = props.summary.jobs.regional / props.summary.jobs.national_avg * 100
-    let jobsComparison = <div>{jobsComparisonPercent.toFixed(0)}% <span id="GreenText">above</span> national average</div>
-    if (jobsComparisonPercent < 0) jobsComparison = <div>{(-jobsComparisonPercent).toFixed(0)}% <span id="RedText">below</span> national average</div>
+    let jobsComparison = <div>{jobsComparisonPercent}% <span id="GreenText">above</span> national average</div>
+    if (jobsComparisonPercent < 0) jobsComparison = <div>{(-jobsComparisonPercent)}% <span id="RedText">below</span> national average</div>
     
-    let jobsGrowthRegional = <span id="GreenText">+{props.summary.jobs_growth.regional}</span>
+    let jobsGrowthRegional = <span id="GreenText">+{props.summary.jobs_growth.regional}%</span>
     if (props.summary.jobs_growth.regional < 0) jobsGrowthRegional = <span id="RedText">-{-props.summary.jobs_growth.regional}</span>
     
     let jobsGrowthNational =  <div>Nation <span id="GreenText">+{props.summary.jobs_growth.national_avg}%</span></div>
@@ -28,9 +28,9 @@ export default function Summary (props) {
             </span>
 
             <span id="SummaryBoxRight">
-                <div id="Text1">${props.summary.earnings.regional.toFixed(2)}/hr</div>
+                <div id="Text1">${props.summary.earnings.regional}/hr</div>
                 <div id="Text2Bold">Median Hourly Earnings</div>
-                <div id="Text2">Nation: ${props.summary.earnings.national_avg.toFixed(2)}/hr</div>
+                <div id="Text2">Nation: ${props.summary.earnings.national_avg}/hr</div>
             </span>
 
         </div>

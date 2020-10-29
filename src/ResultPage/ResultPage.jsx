@@ -4,6 +4,7 @@ import './css/ResultPage.css'
 import './css/Variables.css'
 import GraphTable from './modules/GraphTable'
 import Summary from './modules/Summary'
+import Table from './modules/Table'
 
 export default function ResultPage (props) {
 
@@ -27,9 +28,11 @@ export default function ResultPage (props) {
             />
 
             <GraphTable
-                trendComparison={resultPageContext.resultData.trendComparison}
+                trendComparison={resultPageContext.resultData.trend_comparison}
+            />
 
-
+            <Table
+                employingIndustries={resultPageContext.resultData.employing_industries}
             />
 
             <div id="ResultPageSectionTitle">Regional Trends</div>
