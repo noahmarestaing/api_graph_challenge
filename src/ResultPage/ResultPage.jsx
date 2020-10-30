@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useResultPageContext } from '../contexts/ResultPageContext'
 import './css/ResultPage.css'
 import './css/Variables.css'
+import { Graph } from './modules/Graph'
 import GraphTable from './modules/GraphTable'
 import Summary from './modules/Summary'
 import Table from './modules/Table'
@@ -26,18 +27,22 @@ export default function ResultPage (props) {
             <Summary
                 summary={resultPageContext.resultData.summary}
             />
-
+            <div id="ResultPageSectionTitle">Regional Trends</div>
+            <Graph
+                trendComparison={resultPageContext.resultData.trend_comparison}
+            />
             <GraphTable
                 trendComparison={resultPageContext.resultData.trend_comparison}
             />
 
+            <div id="ResultPageSectionTitle">Industries Employing {resultPageContext.resultData.occupation.title}</div>
             <Table
                 employingIndustries={resultPageContext.resultData.employing_industries}
             />
 
-            <div id="ResultPageSectionTitle">Regional Trends</div>
+            
 
-            <div id="ResultPageSectionTitle">Industries Employing {resultPageContext.resultData.occupation.title}</div>
+            
         </div>
     )
 }
