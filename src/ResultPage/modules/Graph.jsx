@@ -1,5 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react'
 import * as d3 from 'd3'
+import Circle from '../../icons/circle.svg'
+import Square from '../../icons/square.svg'
+import Triangle from '../../icons/triangle.svg'
 
 export const Graph = (props) => {
     const d3Container = useRef(null)
@@ -70,11 +73,11 @@ export const Graph = (props) => {
         let graph = svg.append('g')
 
         let xscale = d3.scaleLinear()
-            .domain([minDate - 1, maxDate + 1])
-            .range([0, width]);
+            .domain([minDate, maxDate])
+            .range([0, width - 100]);
 
         let yscale = d3.scaleLinear()
-            .domain([minAmount - 10, maxAmount + 10])
+            .domain([minAmount - 1, maxAmount + 1])
             .range([height, 0]);
 
         let x_axis = d3.axisBottom(xscale)
@@ -83,7 +86,7 @@ export const Graph = (props) => {
             .tickFormat(d3.format("d"));
 
         let y_axis = d3.axisLeft(yscale)
-            .ticks(((maxAmount + 5) - (minAmount - 5)))
+            .ticks(((maxAmount + 1) - (minAmount - 1)))
             .tickSize(0);
 
         //generate x axis
@@ -99,6 +102,15 @@ export const Graph = (props) => {
 
         gX.selectAll(".tick line")
             .attr("opacity",".3");
+
+
+        graph.append("text")             
+        .attr("transform", "rotate(-90)")
+        .attr("y", 10)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Percent Change");      
 
         //generate x axis
         let gY = graph.append('g')
@@ -116,15 +128,26 @@ export const Graph = (props) => {
             })
             // .curve(d3.curveCatmullRom.alpha(.5));
 
-        //regional data line
+        //nation data line
         graph.append("path")
-            .datum(regionalData)
+            .datum(nationData)
             .attr("class", "line")
             .attr("d", line)
             .attr("fill", "none")
-            .style("stroke", "rgb(7, 23, 65)")
+            .style("stroke", "rgb(142, 212, 233)")
             .style("stroke-width", "1")
             .attr("transform", "translate(50, -20)");
+
+        //nation triangle markers
+        graph.selectAll("marker")
+            .data(nationData)
+            .enter().append("svg:image") // Uses the enter().append() method
+            .attr("xlink:href", Triangle)
+            .attr("x", function(d) { return xscale(d.x) })
+            .attr("y", function(d) { return yscale(d.y) })
+            .attr("transform", "translate(46, -26)")
+            .attr("width", "9")
+            .attr("height", "9");
 
         //state data line
         graph.append("path")
@@ -136,15 +159,40 @@ export const Graph = (props) => {
             .style("stroke-width", "1")
             .attr("transform", "translate(50, -20)");
 
-        //nation data line
+        //state square markers
+        graph.selectAll("marker")
+            .data(stateData)
+            .enter().append("svg:image") // Uses the enter().append() method
+            .attr("xlink:href", Square)
+            .attr("x", function(d) { return xscale(d.x) })
+            .attr("y", function(d) { return yscale(d.y) })
+            .attr("transform", "translate(48, -23)")
+            .attr("width", "7")
+            .attr("height", "7");
+
+        //regional data line
         graph.append("path")
-            .datum(nationData)
+            .datum(regionalData)
             .attr("class", "line")
             .attr("d", line)
             .attr("fill", "none")
-            .style("stroke", "rgb(142, 212, 233)")
+            .style("stroke", "rgb(7, 23, 65)")
             .style("stroke-width", "1")
             .attr("transform", "translate(50, -20)");
+
+        //regional circle markers
+        graph.selectAll("marker")
+            .data(regionalData)
+            .enter().append("svg:image") // Uses the enter().append() method
+            .attr("xlink:href", Circle)
+            .attr("x", function(d) { return xscale(d.x) })
+            .attr("y", function(d) { return yscale(d.y) })
+            .attr("transform", "translate(48, -23)")
+            .attr("width", "7")
+            .attr("height", "7");
+
+
+
 
         //remove old svg items when new items are generated
         return () => {
@@ -157,6 +205,7 @@ export const Graph = (props) => {
 
     return (
         <div id="Graph">
+            
             <svg
                 className = "d3-component"
                 width = {w}
