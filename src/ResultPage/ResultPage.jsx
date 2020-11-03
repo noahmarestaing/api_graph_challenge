@@ -40,9 +40,6 @@ export default function ResultPage (props) {
                 employingIndustries={resultPageContext.resultData.employing_industries}
             />
 
-            
-
-            
         </div>
     )
 }

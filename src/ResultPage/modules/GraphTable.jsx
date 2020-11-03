@@ -6,15 +6,21 @@ import square from '../../icons/square.svg'
 
 export default function GraphTable (props) {
 
-    console.log(props.trendComparison)
+    //render table row
     function renderRow(val1, val2, val3, val4, val5, textStyle, icon) {
+        if (val1 === undefined) val1 = 0;
+        if (val2 === undefined) val2 = 0;
+        if (val3 === undefined) val3 = 0;
+        if (val4 === undefined) val4 = 0;
+        if (val5 === undefined) val5 = 0;
+        
         return (
             <span id="TableRow">
-                    <span id="GraphTableEntryLeft"><span id={textStyle}>{icon}<span id="GraphTableTextPadding">{val1}</span></span></span>
-                    <span id="GraphTableEntry"><span id={textStyle}>{val2}</span></span>
-                    <span id="GraphTableEntry"><span id={textStyle}>{val3}</span></span>
-                    <span id="GraphTableEntry"><span id={textStyle}>{val4}</span></span>
-                    <span id="GraphTableEntry"><span id={textStyle}>{val5}</span></span>
+                    <span id="GraphTableEntryLeft"><span id={textStyle}>{icon}<span id="GraphTableTextPadding">{val1.toLocaleString(undefined, {maximumFractionDigits:2})}</span></span></span>
+                    <span id="GraphTableEntry"><span id={textStyle}>{val2.toLocaleString(undefined, {maximumFractionDigits:2})}</span></span>
+                    <span id="GraphTableEntry"><span id={textStyle}>{val3.toLocaleString(undefined, {maximumFractionDigits:2})}</span></span>
+                    <span id="GraphTableEntry"><span id={textStyle}>{val4.toLocaleString(undefined, {maximumFractionDigits:2})}</span></span>
+                    <span id="GraphTableEntry"><span id={textStyle}>{val5.toLocaleString(undefined, {maximumFractionDigits:2})}</span></span>
             </span>
         )
     }

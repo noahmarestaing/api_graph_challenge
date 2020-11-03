@@ -8,6 +8,7 @@ export function useResultPageContext() {
 
 function ResultPageProvider(props) {
 
+    //dummy job data for before the page loads
     const [resultData, setResultData] = useState({
         occupation: {
             onet: "default",
@@ -48,6 +49,7 @@ function ResultPageProvider(props) {
         }  
     })
 
+    //get job data from the mocky.io url
     function getResultData() {
         console.log("getting result data")
         fetch("https://run.mocky.io/v3/a2cc3707-8691-4188-8413-6183a7bb3d32", {

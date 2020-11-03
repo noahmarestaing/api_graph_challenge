@@ -2,9 +2,11 @@ import React from 'react'
 import '../css/Summary.css'
 
 export default function Summary (props) {
-    let jobsComparisonPercent = props.summary.jobs.regional / props.summary.jobs.national_avg * 100
-    let jobsComparison = <div>{jobsComparisonPercent}% <span id="GreenText">above</span> national average</div>
-    if (jobsComparisonPercent < 0) jobsComparison = <div>{(-jobsComparisonPercent)}% <span id="RedText">below</span> national average</div>
+
+    //generate green text if the percentage increases and red if it decreases
+    let jobsComparisonPercent = (props.summary.jobs.regional / props.summary.jobs.national_avg * 100).toLocaleString(undefined, {maximumFractionDigits:2})
+    let jobsComparison = <div>{jobsComparisonPercent.toLocaleString(undefined, {maximumFractionDigits:2})}% <span id="GreenText">above</span> national average</div>
+    if (jobsComparisonPercent < 0) jobsComparison = <div>{(-jobsComparisonPercent).toLocaleString(undefined, {maximumFractionDigits:2})}% <span id="RedText">below</span> national average</div>
     
     let jobsGrowthRegional = <span id="GreenText">+{props.summary.jobs_growth.regional}%</span>
     if (props.summary.jobs_growth.regional < 0) jobsGrowthRegional = <span id="RedText">-{-props.summary.jobs_growth.regional}</span>
@@ -16,7 +18,7 @@ export default function Summary (props) {
         <div id="Summary">
 
             <span id="SummaryBoxLeft">
-                <div id="Text1">{props.summary.jobs.regional}</div>
+                <div id="Text1">{props.summary.jobs.regional.toLocaleString(undefined, {maximumFractionDigits:2})}</div>
                 <div id="Text2Bold">Jobs ({props.summary.jobs.year})</div>
                 <div id="Text2">{jobsComparison}</div>
             </span>
@@ -28,9 +30,9 @@ export default function Summary (props) {
             </span>
 
             <span id="SummaryBoxRight">
-                <div id="Text1">${props.summary.earnings.regional}/hr</div>
+                <div id="Text1">${props.summary.earnings.regional.toLocaleString(undefined, {maximumFractionDigits:2})}/hr</div>
                 <div id="Text2Bold">Median Hourly Earnings</div>
-                <div id="Text2">Nation: ${props.summary.earnings.national_avg}/hr</div>
+                <div id="Text2">Nation: ${props.summary.earnings.national_avg.toLocaleString(undefined, {maximumFractionDigits:2, minimumFractionDigits: 2})}/hr</div>
             </span>
 
         </div>

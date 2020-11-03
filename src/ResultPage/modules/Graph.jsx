@@ -7,9 +7,11 @@ import Triangle from '../../icons/triangle.svg'
 export const Graph = (props) => {
     const d3Container = useRef(null)
 
+    //years for the graph
     let startYear = props.trendComparison.start_year;
     let endYear = props.trendComparison.end_year
 
+    //initialize arrays of data points
     let regionalData = []
     let stateData = []
     let nationData = []
@@ -17,6 +19,7 @@ export const Graph = (props) => {
     let maxAmount = -100;
     let minAmount = 100
 
+    //generates graph (xy) points from regional data
     for (let i = 0; i < props.trendComparison.regional.length; i++) {
         let percentChange = (props.trendComparison.regional[i] - props.trendComparison.regional[0]) / props.trendComparison.regional[0] * 100;
         
@@ -29,6 +32,7 @@ export const Graph = (props) => {
         })
     }
 
+    //generates graph (xy) points from state data
     for (let i = 0; i < props.trendComparison.state.length; i++) {
         let percentChange = (props.trendComparison.state[i] - props.trendComparison.state[0]) / props.trendComparison.state[0] * 100;
         
@@ -41,6 +45,7 @@ export const Graph = (props) => {
         })
     }
 
+    //generates graph (xy) points from nation data
     for (let i = 0; i < props.trendComparison.nation.length; i++) {
         let percentChange = (props.trendComparison.nation[i] - props.trendComparison.nation[0]) / props.trendComparison.nation[0] * 100;
         
@@ -66,16 +71,17 @@ export const Graph = (props) => {
             height = h;
 
         //bounds for the graph
-        
         let minDate = startYear
         let maxDate = endYear
 
         let graph = svg.append('g')
 
+        //initialize x scale for d3 graph
         let xscale = d3.scaleLinear()
             .domain([minDate, maxDate])
             .range([0, width - 100]);
 
+        //initialize y scale for d3 graph
         let yscale = d3.scaleLinear()
             .domain([minAmount - 1, maxAmount + 1])
             .range([height, 0]);
@@ -103,20 +109,20 @@ export const Graph = (props) => {
         gX.selectAll(".tick line")
             .attr("opacity",".3");
 
-
-        graph.append("text")             
-        .attr("transform", "rotate(-90)")
-        .attr("y", 10)
-        .attr("x",0 - (height / 2))
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .text("Percent Change");      
-
-        //generate x axis
+        //generate y axis
         let gY = graph.append('g')
             .call(y_axis)
             .attr("transform", "translate(50, -20)")
             .attr("color", "gray");
+
+        //y axis label
+        graph.append("text")             
+            .attr("transform", "rotate(-90)")
+            .attr("y", 10)
+            .attr("x",0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Percent Change");      
 
         //function to generate line paths
         var line = d3.line()
@@ -126,7 +132,6 @@ export const Graph = (props) => {
             .y(function(d, i) {
                 return yscale(d.y);
             })
-            // .curve(d3.curveCatmullRom.alpha(.5));
 
         //nation data line
         graph.append("path")
@@ -191,17 +196,12 @@ export const Graph = (props) => {
             .attr("width", "7")
             .attr("height", "7");
 
-
-
-
         //remove old svg items when new items are generated
         return () => {
             svg.selectAll('*').remove();
         }
 
     }, [props.trendComparison])
-
-    
 
     return (
         <div id="Graph">
