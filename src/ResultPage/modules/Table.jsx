@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import '../css/Table.css'
 
 export default function Table (props) {
@@ -43,7 +43,10 @@ export default function Table (props) {
         return (rows)
     }
 
-    return (
+    const [updatableHTML, setUpdatableHTML] = useState(<div></div>)
+
+    useEffect(() => {
+        setUpdatableHTML(
         <div id="Table">
             {renderRow("Industry", "Occupation Jobs in Industry (" + props.employingIndustries.year + ")", 
             "Percent of Occupation in Industry (" + props.employingIndustries.year + ")", 
@@ -52,4 +55,7 @@ export default function Table (props) {
             {renderIndustryRows(props.employingIndustries)}
         </div>
     )
+    }, [props.employingIndustries])
+
+    return updatableHTML
 }

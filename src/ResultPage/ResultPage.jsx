@@ -27,6 +27,7 @@ export default function ResultPage (props) {
             <Summary
                 summary={resultPageContext.resultData.summary}
             />
+            
             <div id="ResultPageSectionTitle">Regional Trends</div>
             <Graph
                 trendComparison={resultPageContext.resultData.trend_comparison}
